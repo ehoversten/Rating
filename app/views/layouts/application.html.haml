@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Rating
+
+    %meta{charset: "utf-8"}/
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{:type => "text/css", :rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"}
+    %link{:type => "text/css", :rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"}
+    %link{:type => "text/css", :rel => "stylesheet", :href => 'http://fonts.googleapis.com/css?family=Open+Sans' }
+    %link{:type => "text/css", :rel => "stylesheet", :href => 'http://fonts.googleapis.com/css?family=Shadows+Into+Light' }
+    %link{:href => "//cdn-images.mailchimp.com/embedcode/classic-10_7.css", :rel => "stylesheet", :type => "text/css"}/
+
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %script{:type => "text/javascript", :src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
+    %script{:src => "//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js", :type => "text/javascript"}
+    = csrf_meta_tags
+  %body
+
+    - if notice
+      %p.alert.alert-success= notice
+    - if alert
+      %p.alert.alert-danger= alert
+
+    = render '/layouts/header'
+    .container
+      = yield
