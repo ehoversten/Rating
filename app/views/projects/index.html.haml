@@ -5,9 +5,6 @@
     %tr
       %th Title
       %th Description
-      %th
-      %th
-      %th
 
   %tbody
     - @projects.each do |project|
@@ -20,4 +17,6 @@
 
 %br
 
-= link_to 'New Project', new_project_path
+
+- if user_signed_in?
+  = link_to 'New Project', new_project_path
