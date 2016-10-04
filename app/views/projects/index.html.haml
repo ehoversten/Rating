@@ -1,6 +1,6 @@
 #project_board
   .container
-    .row
+    .row#listing
       %h1 Listing projects
 
     - @projects.each_slice(3) do |boards|
@@ -15,6 +15,7 @@
               .card-img-top
                 = image_tag board.image.url(:medium)
               .card-block
+                %p= board.category.name
                 = link_to board.title, board
                 %p= board.description
 

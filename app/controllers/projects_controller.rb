@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :edit]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.all.order("created_at DESC")
   end
 
   # GET /projects/1
@@ -16,16 +17,20 @@ class ProjectsController < ApplicationController
   def new
     # @project = Project.new
     @project = current_user.projects.build
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   # GET /projects/1/edit
   def edit
+    # allow access to category_id when editing
+    @categories = Category.all.map{ |c| [c.name, c.id] }
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = current_user.projects.build(project_params)
+    @project.category_id = params[:category_id]
 
     respond_to do |format|
       if @project.save
@@ -41,6 +46,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project.category_id = params[:category_id]
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -70,6 +76,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:title, :description, :image)
+      params.require(:project).permit(:title, :description, :image, :category_id)
     end
 end

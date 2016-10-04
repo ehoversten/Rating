@@ -11,13 +11,17 @@
         %b Title:
         = @project.title
       %p
+        %b Category:
+        = @project.category.name
+      %p
         %b Description:
         = @project.description
 
       - if user_signed_in?
-        = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
-        \|
-        = link_to 'Destroy', project_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+        - if @project.user_id == current_user.id
+          = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
+          \|
+          = link_to 'Destroy', project_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
 
 
       = link_to 'Back', projects_path, class: "btn btn-default"

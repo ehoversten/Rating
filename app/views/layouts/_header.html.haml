@@ -1,8 +1,30 @@
 #header
-  .container
-    .nav.navbar-nav
-      = link_to "Home", root_path, class: "btn btn-default"
-    .nav.navbar-nar.pull-right
+  -# .container
+  .navbar.navbar-inverse
+    .nav.navbar-header
+      = link_to "Project Home", root_path, class: "navbar-brand"
+    .nav.navbar-nav.pull-left
+      %li.dropdown
+        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Categories
+          %span.caret
+        %ul.dropdown-menu{:role => "menu"}
+          %li
+            %a{:href => "#"} Action
+          %li
+            %a{:href => "#"} Another action
+          %li
+            %a{:href => "#"} Something else here
+          %li.divider{:role => "separator"}
+          %li
+            %a{:href => "#"} Separated link
+          -# - Category.all.each do |category|
+          -#   -# %li{:class => 'active' if params[:category] == category.name}
+          -#   = link_to category.name, projects_path(category: category.name), class: "link"
+
+    
+
+    .nav.navbar-nav.pull-right
       -# = link_to "Log Out", root_path, class: "btn btn-default"
       -# = link_to "Sign In", root_path, class: "btn btn-primary"
       -# = link_to "Log In", root_path, class: "btn btn-default"
