@@ -1,0 +1,6 @@
+#edit_form
+  %h2 Edit Form
+  = simple_form_for([@project, @comment]) do |f|
+    = f.input :rating
+    = f.input :comment
+    = f.submit "Update Comment", class: "btn btn-success"

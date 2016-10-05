@@ -1,0 +1,8 @@
+#form-horizontal
+  = simple_form_for([@project, @project.comments.build]) do |f|
+    .field
+      = f.input :rating
+      
+      = f.input :comment
+    .field
+      = f.submit 'Save', class: "btn btn-success"

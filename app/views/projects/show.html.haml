@@ -17,9 +17,15 @@
         %b Description:
         = @project.description
 
+  .row 
+    .col-md-6
+      = render @project.comments
+
       - if user_signed_in?
+        = link_to "Add Comment", new_project_comment_path(@project), class: "btn btn-primary"
+
         - if @project.user_id == current_user.id
-          = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary"
+          = link_to 'Edit', edit_project_path(@project), class: "btn btn-primary", class: "btn btn-primary"
           \|
           = link_to 'Destroy', project_path, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger"
 

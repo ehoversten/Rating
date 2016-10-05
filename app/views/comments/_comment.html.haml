@@ -1,0 +1,16 @@
+
+#comments
+  .container
+    %h4 Rating: 
+    = comment.rating
+    %p Comment by:
+    = comment.commenter = current_user.email
+    %p Comment:
+    = comment.comment
+
+    %br/
+
+    = link_to "Edit", edit_project_comment_path(comment.project, comment), class: "btn btn-primary"
+    = link_to "Delete", project_comment_path(comment.project, comment), method: :delete, date: { confirm: "Are You Sure?" }, class: "btn btn-danger"
+
+    %br/
